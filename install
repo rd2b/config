@@ -1,0 +1,16 @@
+#!/bin/bash
+#################################################################
+#	Name: 	install				#
+#	Description: Installation des fichiers de configuration	#
+#################################################################
+
+echo "Maj des fichiers de config"
+configdir="$HOME/.config"
+
+ln -sf $configdir/bash/bashrc 	$HOME/.bashrc
+ln -sf $configdir/vim/vimrc 	$HOME/.vimrc
+ln -sf $configdir/bash/bashaliases 	$HOME/.bash_aliases
+ln -sf $configdir/bash/bash_completion	$HOME/.bash_completion
+ln -sf $configdir/screen/screenrc 	$HOME/.screenrc
+ln -sf $configdir/bash/bash_completion.d  $HOME/.bash_completion.d
+
