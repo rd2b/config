@@ -1,1 +1,18 @@
-/home/remi/configuration.local/screenrc
+
+
+#Pour ouvrir automatiquement une fenetre nommee : 
+#screen -t top top
+caption always "%?%{ Wk}%-Lw%?%{Rk}%n*%f %t%?(%u)%?%?%{Wk}%+Lw%? %{Rk}%=%c %{rk}%d/%M/%Y"
+hardstatus string "%{+b Rk}(%{-b g}$LOGNAME@%H%{+b R}) (%{-b g}%C %a%{+b R}) %{-b g} %n %t %h"
+
+# auto-screen support; see http://taint.org/wk/RemoteLoginAutoScreen
+# detach on hangup
+autodetach on
+# no startup msg
+startup_message off
+
+# always use a login shell
+shell -$SHELL
+
+termcapinfo xterm* ti@:te@
+
