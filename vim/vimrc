@@ -12,6 +12,18 @@ syntax on
 set lazyredraw 
 set scrolloff=10 " empeche de descendre en base du fichier 
 
+
+set cindent
+set smartindent
+set autoindent
+
+"" Pour les tabs
+set expandtab
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+
+
 ""Coloration syntaxique pour txt2tags
 au BufNewFile,BufRead *.t2t set ft=txt2tags
 
@@ -27,6 +39,11 @@ imap ;headername <TAB>Name: <TAB>\fname<TAB><TAB>
 imap ;headerdescription <TAB>Description: TODO<TAB>
 imap ;#header  <LEFT>;#headersep#;headername#<CR>#;headerdescription#<CR>;#headersep
 
+
+autocmd FileType php imap ;#headersep /************************************************/<CR>
+autocmd FileType php imap ;#header  <?<CR><LEFT>;#headersep/*;headername*/<CR>/*;headerdescription*/<CR>;#headersep
+
+
 imap ;header ;#header
 
 autocmd FileType sh imap ;header #!/bin/bash<CR>;#header
@@ -34,13 +51,18 @@ autocmd FileType python imap ;header #!/usr/bin/env python<CR>;#header
 autocmd FileType crontab imap ;header ;#header
 
 
+
 "Fonctions :
 imap ;#commentairefonctionsep  #-------------------------------------
 imap ;#commentairefonction <LEFT>;#commentairefonctionsep<CR># Description : TODO <CR>;#commentairefonctionsep
-imap ;pyindent <space><space><space><space>
+imap ;indent <space><space><space><space>
+
+
+autocmd FileType php imap ;#commentairefonction <LEFT>/**<CR><LEFT>* Description : TODO <CR>*/
 
 autocmd FileType sh imap ;func ;#commentairefonction<CR>function TODO {<CR><CR>} 
-autocmd FileType python imap ;func ;#commentairefonction<CR>def TODO():<CR><CR><UP>;pyindent
+autocmd FileType python imap ;func ;#commentairefonction<CR>def TODO():<CR><CR><UP>;indent
+autocmd FileType php imap ;func ;#commentairefonction<CR>function TODO(){<CR><CR>}
 
 
 "Main
@@ -52,4 +74,7 @@ autocmd FileType python imap ;main ;pymain
 autocmd FileType python imap ;myft YES YOU ARE IN PYTHON
 autocmd FileType crontab imap ;myft YES YOU ARE IN CRONTAB
 autocmd FileType sh imap ;myft YES YOU ARE IN SH
+autocmd FileType php imap ;myft YES YOU ARE IN PHP
 
+""Supprimer le mappage en entrant dans vimrc
+autocmd VimEnter * if @% == '.vimrc' | mapclear!
