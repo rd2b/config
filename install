@@ -16,3 +16,4 @@ ln -sf $configdir/bash/profile 		$HOME/.profile
 ln -sf $configdir/screen/screenrc 	$HOME/.screenrc
 
 ln -sf $configdir/vim/vimrc 	$HOME/.vimrc
+ln -sf $configdir/vim	 	$HOME/.vim
