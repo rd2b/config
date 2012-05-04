@@ -26,6 +26,8 @@ set tabstop=4
 
 ""Coloration syntaxique pour txt2tags
 au BufNewFile,BufRead *.t2t set ft=txt2tags
+""Coloration syntaxique pour cfengine3
+au BufRead,BufNewFile *.cf set ft=cf3
 
 
 imap \fpath  <C-R>=expand("%:p")<CR>
