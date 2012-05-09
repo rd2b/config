@@ -105,7 +105,8 @@ if [ -f ~/.bash_completion ] && ! shopt -oq posix; then
     . ~/.bash_completion
 fi
 
-PATH="$PATH:/home/`whoami`/bin"
-
+if [ -d ~/bin ]; then
+    PATH="~/bin:$PATH"
+fi
 
 
