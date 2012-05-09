@@ -109,4 +109,13 @@ if [ -d ~/bin ]; then
     PATH="~/bin:$PATH"
 fi
 
+#-------------------------------------
+# Description : makes mutilples hosts
+#-------------------------------------
+function hosts {
+    lst=$@
+    for h in $lst; do
+        host $h
+    done
 
+} 
