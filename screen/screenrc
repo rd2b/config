@@ -16,3 +16,5 @@ shell -$SHELL
 
 termcapinfo xterm* ti@:te@
 
+bindkey "^[[1;5D" prev  # to move to previous window with ctrl-left
+bindkey "^[[1;5C" next  # to move to next window with ctrl-right
