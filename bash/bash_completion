@@ -1,2 +1,3 @@
 . ~/.bash_completion.d/git_completion
 . ~/.bash_completion.d/dsh_completion
+. ~/.bash_completion.d/virsh_completion
