@@ -59,9 +59,9 @@ imap ;#commentairefonctionsep  #-------------------------------------
 imap ;#commentairefonction <LEFT>;#commentairefonctionsep<CR># Description : TODO <CR>;#commentairefonctionsep
 imap ;indent <space><space><space><space>
 
-
+" Variables subversion
+imap ;subversion # Repository path: $HeadURL$<CR># ID: $Id$<CR>
 autocmd FileType php imap ;#commentairefonction <LEFT>/**<CR><LEFT>* Description : TODO <CR>*/
-
 autocmd FileType sh imap ;func ;#commentairefonction<CR>function TODO {<CR><CR>} 
 autocmd FileType python imap ;func ;#commentairefonction<CR>def TODO():<CR><CR><UP>;indent
 autocmd FileType php imap ;func ;#commentairefonction<CR>function TODO(){<CR><CR>}
