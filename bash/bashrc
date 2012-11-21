@@ -140,3 +140,5 @@ else
     start_agent;
 fi
 
+trap "kill $SSH_AGENT_PID" 0
+
