@@ -26,6 +26,9 @@ set shiftwidth=4
 set softtabstop=4
 set tabstop=4
 
+filetype plugin on
+filetype indent on
+
 
 ""Coloration syntaxique pour txt2tags
 au BufNewFile,BufRead *.t2t set ft=txt2tags
