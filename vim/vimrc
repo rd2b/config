@@ -3,9 +3,13 @@
 """"""""""""""""""""""""""""""""""""""""
 
 "Lignes trop longues
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.*/
-
+" Use english for spellchecking, but don't spellcheck by default
+if exists('+colorcolumn')
+  set colorcolumn=80
+else
+    highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+    match OverLength /\%80v.*/
+endif
 
 set background=dark 
 syntax on
@@ -40,19 +44,7 @@ imap ;#headersep #########################################################<CR>
 imap ;headername <TAB>Name: <TAB>\fname<TAB><TAB>
 imap ;headerdescription <TAB>Description: TODO<TAB>
 imap ;#header  <LEFT>;#headersep#;headername#<CR>#;headerdescription#<CR>;#headersep
-
-
-autocmd FileType php imap ;#headersep /************************************************/<CR>
-autocmd FileType php imap ;#header  <?<CR><LEFT>;#headersep/*;headername*/<CR>/*;headerdescription*/<CR>;#headersep
-
-
 imap ;header ;#header
-
-autocmd FileType sh imap ;header #!/bin/bash<CR>;#header
-autocmd FileType python imap ;header #!/usr/bin/env python<CR>;#header
-autocmd FileType crontab imap ;header ;#header
-
-
 
 "Fonctions :
 imap ;#commentairefonctionsep  #-------------------------------------
@@ -61,22 +53,55 @@ imap ;indent <space><space><space><space>
 
 " Variables subversion
 imap ;subversion # Repository path: $HeadURL$<CR># ID: $Id$<CR>
-autocmd FileType php imap ;#commentairefonction <LEFT>/**<CR><LEFT>* Description : TODO <CR>*/
-autocmd FileType sh imap ;func ;#commentairefonction<CR>function TODO {<CR><CR>} 
-autocmd FileType python imap ;func ;#commentairefonction<CR>def TODO():<CR><CR><UP>;indent
-autocmd FileType php imap ;func ;#commentairefonction<CR>function TODO(){<CR><CR>}
 
-
-"Main
-imap ;pymain if __name__ == '__main__':<CR><space><space><space><space>
-autocmd FileType python imap ;main ;pymain
 
 "Voir /usr/share/vim/vimcurrent/syntax/ pour les types definis
 "Displays filetype for debug :
-autocmd FileType python imap ;myft YES YOU ARE IN PYTHON
-autocmd FileType crontab imap ;myft YES YOU ARE IN CRONTAB
-autocmd FileType sh imap ;myft YES YOU ARE IN SH
-autocmd FileType php imap ;myft YES YOU ARE IN PHP
+
+au bufNewFile *.sh 0r ~/.vim/templates/skel.sh
+au bufNewFile *.py 0r ~/.vim/templates/skel.py
+
+function! Bashtricks()
+    imap ;myft YES YOU ARE IN SH
+    imap ;header #!/bin/bash<CR>;#header
+    imap ;func ;#commentairefonction<CR>function TODO {<CR><CR>} 
+endfunction
+
+function! Phptricks()
+    imap ;myft YES YOU ARE IN PHP
+    imap ;#headersep /************************************************/<CR>
+    imap ;#header  <?<CR><LEFT>;#headersep/*;headername*/<CR>/*;headerdescription*/<CR>;#headersep
+    imap ;#commentairefonction <LEFT>/**<CR><LEFT>* Description : TODO <CR>*/
+    imap ;func ;#commentairefonction<CR>function TODO(){<CR><CR>}
+endfunction
+
+function! Pythontricks()
+    imap ;myft YES YOU ARE IN PYTHON
+    imap ;main if __name__ == '__main__':<CR><space><space><space><space>
+    imap ;func def TODO():<CR>"""DESCRIPTION"""<CR>
+    imap ;header #!/usr/bin/env python<CR>;#header
+endfunction
+
+function! Crontricks()
+    imap ;header ;#header
+    imap ;myft YES YOU ARE IN CRONTAB
+endfunction
+
+
+"Adding ~/.vimrc.local"
+function! LoadVimLocalRC()
+    if filereadable(expand("~/.vimrc.local"))
+        source ~/.vimrc.local
+    endif
+endfunction
+
+autocmd FileType python :call Pythontricks()
+autocmd FileType php    :call Phptricks()
+autocmd FileType sh     :call Bashtricks()
+autocmd FileType crontab :call Crontricks()
+
+call LoadVimLocalRC()
 
 ""Supprimer le mappage en entrant dans vimrc
 autocmd VimEnter * if @% == '.vimrc' | mapclear!
+
