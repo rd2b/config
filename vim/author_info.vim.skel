@@ -1,0 +1,6 @@
+let g:AuthorName = ""
+let g:Email = ""
+let g:AuthorRef = ""
+let g:Project = ""
+let g:Company  = ""
+let g:CopyrightHolder = ""

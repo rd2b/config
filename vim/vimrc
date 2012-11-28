@@ -2,9 +2,14 @@
 " Fichier de configuration pour vim
 """"""""""""""""""""""""""""""""""""""""
 
+""Can use a different author file at home or work
+if filereadable(expand("~/.vim/author_info.vim"))
+    source ~/.vim/author_info.vim
+endif
+
 "Lignes trop longues
 if exists('+colorcolumn')
-  set colorcolumn=80
+    set colorcolumn=80
 else
     highlight OverLength ctermbg=red ctermfg=white guibg=#592929
     match OverLength /\%80v.*/
@@ -57,16 +62,27 @@ imap ;indent <space><space><space><space>
 imap ;subversion # Repository path: $HeadURL$<CR># ID: $Id$<CR>
 
 
-"Voir /usr/share/vim/vimcurrent/syntax/ pour les types definis
-"Displays filetype for debug :
+function! s:insert_description(templatefile)
+    let template = $HOME . "/" . a:templatefile
+    let date = strftime("%Y/%m/%d") " Get the current year in format YYYY
+    let file_name = expand("%:t") " Get file name without path
+    let i = 0
+    for line in readfile(template)
+        let line = substitute(line, "<file_name>", file_name, "ge")
+        let line = substitute(line, "<date>", date, "ge")
+        call append(i, line)
+        let i += 1
+    endfor
+    execute "normal! Go\<Esc>k"
+endfunction
 
-au bufNewFile *.sh 0r ~/.vim/templates/skel.sh
-au bufNewFile *.py 0r ~/.vim/templates/skel.py
+"au bufNewFile *.sh 0r ~/.vim/templates/skel.sh
 
 function! Bashtricks()
     imap ;myft YES YOU ARE IN SH
     imap ;header #!/bin/bash<CR>;#header
-    imap ;func ;#commentairefonction<CR>function TODO {<CR><CR>} 
+    imap ;func ;#commentairefonction<CR>function TODO {<CR><CR>}
+
 endfunction
 
 function! Phptricks()
@@ -101,6 +117,9 @@ autocmd FileType python :call Pythontricks()
 autocmd FileType php    :call Phptricks()
 autocmd FileType sh     :call Bashtricks()
 autocmd FileType crontab :call Crontricks()
+
+autocmd BufNewFile *.{sh,bash,ksh} call <SID>insert_description(".vim/templates/skel.sh")
+autocmd BufNewFile *.py call <SID>insert_description(".vim/templates/skel.py")
 
 call LoadVimLocalRC()
 
