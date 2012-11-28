@@ -3,7 +3,6 @@
 """"""""""""""""""""""""""""""""""""""""
 
 "Lignes trop longues
-" Use english for spellchecking, but don't spellcheck by default
 if exists('+colorcolumn')
   set colorcolumn=80
 else
