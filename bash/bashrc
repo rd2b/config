@@ -109,24 +109,25 @@ fi
 # Description : makes mutilples hosts
 #-------------------------------------
 function hosts {
-lst=$@
-for h in $lst; do
-    host $h
-done
+    lst=$@
+    for h in $lst; do
+        host $h
+    done
+} 
 
-    } 
 
-    #-------------------------------------
-    # Description : makes mutilples hosts
-    #-------------------------------------
-    SSH_ENV="$HOME/.ssh/environment"
-    function start_agent {
+#-------------------------------------
+# Description : makes mutilples hosts
+#-------------------------------------
+SSH_ENV="$HOME/.ssh/environment"
+
+function start_agent {
     echo "Initialising new SSH agent..."
     /usr/bin/ssh-agent -t 345600 | sed 's/^echo/#echo/' > "${SSH_ENV}"
     echo succeeded
     chmod 600 "${SSH_ENV}"
     . "${SSH_ENV}" > /dev/null
-    /usr/bin/ssh-add;
+    /usr/bin/ssh-add
 }
 
 # Source SSH settings, if applicable
@@ -142,8 +143,7 @@ fi
 
 
 
-recurrence ()
-{
+function recurrence {
     d=`date +%e`;
     url='http://admin.infra.multis.p.fti.net/calendarRecurrence/';
     if [ $# -ge 1 ] && [ "$1" == '-n' ]; then
@@ -151,4 +151,21 @@ recurrence ()
     else
         w3m -cols 120 -dump ${url}/showMonth.php | sed "s/$d/>$d</";
     fi
+}
+
+function updaterepository {
+    defaultrepos="~/repositories"
+    
+    if [ -d $defaultrepos ]
+    then
+        for dir in `ls $defaultrepos`
+        do 
+            echo "Handling $defaultrepos/$dir"
+            cd $defaultrepos/$i
+            [ -d $defaultrepos/$i/.svn ] && svn up
+            [ -d $defaultrepos/$i/.git ] && git pull
+            cd $defaultrepos 
+        done
+    fi
+
 }
