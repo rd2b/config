@@ -1,0 +1,43 @@
+#!/bin/bash
+_btrfs()
+{
+	local OLDIFS="$IFS" IFS=$'\t\n' cur=${COMP_WORDS[COMP_CWORD]} 
+	local prev=${COMP_WORDS[COMP_CWORD-1]}
+	local complist=()
+
+
+	COMPREPLY=()
+	local helpers=""
+	local FIRSTS="subvolume filesystem device "
+	local SUBVOLUME="snapshot delete create list find-new set-default "
+	local filesystem="sync resize show df balance $helpers"
+	local device="scan add delete $helpers"
+
+
+
+	case $prev in
+	btrfs)
+		IFS="$OLDIFS"
+		COMPREPLY=( $( compgen -W "$FIRSTS" -- $cur ) )
+		;;
+	subvolume)
+              set -x
+		COMPREPLY=( $( compgen -W $SUBVOLUME -- $cur ) )
+		;;
+	filesytem)
+		COMPREPLY=( $( compgen -W $filesyetem -- $cur ) )
+		;;
+	device)
+		COMPREPLY=( $( compgen -W $device -- $cur))
+		;;
+	help)
+		COMPREPLY=( $( compgen -W "$help" -- $cur))
+		;;
+	esac
+
+	IFS="$OLDIFS"
+	return 0
+
+}
+complete -F _btrfs -o filenames btrfs
+
