@@ -19,6 +19,7 @@ Options:
 EOF
 }
 
+# Prints log message to default output
 function log {
     local level="$1"
     local message="$2"
