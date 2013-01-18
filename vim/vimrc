@@ -59,7 +59,7 @@ imap ;#commentairefonction <LEFT>;#commentairefonctionsep<CR># Description : TOD
 imap ;indent <space><space><space><space>
 
 " Variables subversion
-imap ;subversion # Repository path: $HeadURL$<CR># ID: $Id$<CR>
+imap ;subversion # Versionned file:<CR># $HeadURL$<CR># $Id$<CR>
 
 
 function! s:insert_description(templatefile)
@@ -75,8 +75,6 @@ function! s:insert_description(templatefile)
     endfor
     execute "normal! Go\<Esc>k"
 endfunction
-
-"au bufNewFile *.sh 0r ~/.vim/templates/skel.sh
 
 function! Bashtricks()
     imap ;myft YES YOU ARE IN SH
@@ -118,8 +116,11 @@ autocmd FileType php    :call Phptricks()
 autocmd FileType sh     :call Bashtricks()
 autocmd FileType crontab :call Crontricks()
 
-autocmd BufNewFile *.{sh,bash,ksh} call <SID>insert_description(".vim/templates/skel.sh")
-autocmd BufNewFile *.py call <SID>insert_description(".vim/templates/skel.py")
+let shtemplate = ".vim/templates/skel.sh"
+let pytemplate = ".vim/templates/skel.py"
+
+autocmd BufNewFile *.{sh,bash,ksh} call <SID>insert_description(shtemplate)
+autocmd BufNewFile *.py call <SID>insert_description(pytemplate)
 
 call LoadVimLocalRC()
 
