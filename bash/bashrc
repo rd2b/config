@@ -169,3 +169,9 @@ function updaterepository {
     fi
 
 }
+
+# Désactive le capslock
+/usr/bin/setxkbmap -option ctrl:nocaps
+# Active le verrou numerique
+/usr/bin/numlockx on
+
