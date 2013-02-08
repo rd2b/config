@@ -119,6 +119,7 @@ function hosts {
 #-------------------------------------
 # Description : makes mutilples hosts
 #-------------------------------------
+[ -d "$HOME/.ssh" ] || mkdir -p "$HOME/.ssh"
 SSH_ENV="$HOME/.ssh/environment"
 
 function start_agent {
@@ -171,7 +172,8 @@ function updaterepository {
 }
 
 # Désactive le capslock
-/usr/bin/setxkbmap -option ctrl:nocaps
+test -x /usr/bin/setxkbmap && /usr/bin/setxkbmap -option ctrl:nocaps
+
 # Active le verrou numerique
-/usr/bin/numlockx on
+test -x /usr/bin/numlockx && /usr/bin/numlockx on
 
