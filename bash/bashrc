@@ -16,7 +16,7 @@ shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=10000
-HISTFILESIZE=20000
+HISTFILESIZE=200000
 
 
 unset TMOUT
@@ -183,3 +183,7 @@ test -x /usr/bin/setxkbmap && /usr/bin/setxkbmap -option ctrl:nocaps
 # Active le verrou numerique
 test -x /usr/bin/numlockx && /usr/bin/numlockx on
 
+# Pythonrc file:
+PYTHONSTARTUP=~/.pythonrc
+
+export PYTHONSTARTUP
