@@ -13,6 +13,8 @@ ln -sf $configdir/bash/bash_completion	$HOME/.bash_completion
 ln -sf $configdir/bash/bash_completion.d  $HOME/.bash_completion.d
 ln -sf $configdir/bash/profile 		$HOME/.profile
 
+ln -sf $configdir/python/pythonrc 		$HOME/.pythonrc
+
 ln -sf $configdir/screen/screenrc 	$HOME/.screenrc
 
 ln -sf $configdir/vim/vimrc 	$HOME/.vimrc
