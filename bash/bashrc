@@ -125,6 +125,7 @@ function hosts {
 SSH_ENV="$HOME/.ssh/environment"
 
 function start_agent {
+    pkill -f /usr/bin/ssh-agent
     echo "Initialising new SSH agent..."
     if [ -f "$HOME/.ssh/id_rsa" ]; then
         /usr/bin/ssh-agent -t 345600 | sed 's/^echo/#echo/' > "${SSH_ENV}"
@@ -132,6 +133,7 @@ function start_agent {
         chmod 600 "${SSH_ENV}"
         . "${SSH_ENV}" > /dev/null
         /usr/bin/ssh-add
+        /usr/bin/ssh-add ~/.ssh/id_*.priv
     else
         echo "No sshkey"
     fi
@@ -140,12 +142,6 @@ function start_agent {
 # Source SSH settings, if applicable
 if [ -f "${SSH_ENV}" ]; then
     . "${SSH_ENV}" > /dev/null
-    #ps ${SSH_AGENT_PID} doesn't work under cywgin
-    ps ${SSH_AGENT_PID} | grep "ssh-agent -t 345600$" > /dev/null || {
-    start_agent;
-}
-else
-    start_agent;
 fi
 
 
