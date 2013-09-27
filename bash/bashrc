@@ -15,7 +15,7 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=10000
+HISTSIZE=100000
 HISTFILESIZE=200000
 
 
@@ -128,7 +128,7 @@ function start_agent {
     pkill -f /usr/bin/ssh-agent
     echo "Initialising new SSH agent..."
     if [ -f "$HOME/.ssh/id_rsa" ]; then
-        /usr/bin/ssh-agent -t 345600 | sed 's/^echo/#echo/' > "${SSH_ENV}"
+        /usr/bin/ssh-agent -t 54000 | sed 's/^echo/#echo/' > "${SSH_ENV}"
         echo succeeded
         chmod 600 "${SSH_ENV}"
         . "${SSH_ENV}" > /dev/null
