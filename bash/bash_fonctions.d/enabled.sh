@@ -4,11 +4,7 @@
 #   Description: TODO   #
 #########################################################
 
-before=$(pwd)
-cd ~/.myconfig/bash/bash_fonctions.d/
+. ~/.myconfig/bash/bash_fonctions.d/hosts.sh
+. ~/.myconfig/bash/bash_fonctions.d/handlesshagent.sh
+. ~/.myconfig/bash/bash_fonctions.d/updaterepository.sh
 
-. hosts.sh
-. handlesshagent.sh
-. updaterepository.sh
-
-cd $before
