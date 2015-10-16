@@ -17,6 +17,7 @@ shopt -s histappend
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=100000
 HISTFILESIZE=200000
+HISTTIMEFORMAT="%d/%m/%Y %H:%M:%S "
 
 
 unset TMOUT
@@ -144,17 +145,6 @@ if [ -f "${SSH_ENV}" ]; then
     . "${SSH_ENV}" > /dev/null
 fi
 
-
-
-function recurrence {
-    d=`date +%e`;
-    url='http://admin.infra.multis.p.fti.net/calendarRecurrence/';
-    if [ $# -ge 1 ] && [ "$1" == '-n' ]; then
-        w3m -cols 120 -dump ${url}?now=ok;
-    else
-        w3m -cols 120 -dump ${url}/showMonth.php | sed "s/$d/>$d</";
-    fi
-}
 
 function updaterepository {
     defaultrepos="$HOME/repositories"
