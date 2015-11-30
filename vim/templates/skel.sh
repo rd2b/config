@@ -21,10 +21,12 @@ EOF
 
 # Prints log message to default output
 function log {
-    local level="$1"
-    local message="$2"
+    echo "[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $@"
+}
 
-    $quiet || echo "$(date +"%F %T" ) $PROGNAME: $message" 
+# Prints log message to Error output
+function err() {
+    echo "[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $@" >&2
 }
 
 while getopts "o:qh" opt
