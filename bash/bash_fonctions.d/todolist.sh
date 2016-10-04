@@ -15,6 +15,7 @@ function todo-add {
 
     cd $tododir
     git fetch
+    git merge origin/master
     echo "- [ ] $task" >> $todofile
 
     git status -s
