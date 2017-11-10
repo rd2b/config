@@ -36,11 +36,17 @@ set tabstop=4
 filetype plugin on
 filetype indent on
 
+if has("autocmd")
+    au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+     \| exe "normal g'\"" | endif
+endif
 
 ""Coloration syntaxique pour txt2tags
 au BufNewFile,BufRead *.t2t set ft=txt2tags
 ""Coloration syntaxique pour cfengine3
 au BufRead,BufNewFile *.cf set ft=cf3
+""Coloration syntaxique pour markdown
+au BufRead,BufNewFile *.md set ft=markdown
 
 
 imap \fpath  <C-R>=expand("%:p")<CR>

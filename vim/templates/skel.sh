@@ -10,9 +10,11 @@ quiet=false
 set -u
 set -e
 
+option=""
+
 # Prints help message
 function showhelp {
-    cat >&2 <<- EOF 
+    cat >&2 <<- EOF
 Usage: $PROGNAME [OPTION] ...
 Options:
     -h  prints this help message.
@@ -43,6 +45,6 @@ do
             exit 1
             ;;
     esac
-done  
+done
 
 echo $option

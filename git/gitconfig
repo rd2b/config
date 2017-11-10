@@ -1,0 +1,13 @@
+[push]
+	default = simple
+[user]
+	name = Remi Debay
+	email = rdebay.ext@orange.com
+[core]
+    editor = vim
+    excludesfile = ~/.gitignore
+[init]
+    templatedir = ~/.git_template
+
+[include]
+    path = ~/.gitconfig.local

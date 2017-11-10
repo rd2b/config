@@ -4,8 +4,8 @@
 #   Description: TODO   #
 #########################################################
 
-. ~/.myconfig/bash/bash_fonctions.d/hosts.sh
-. ~/.myconfig/bash/bash_fonctions.d/handlesshagent.sh
-. ~/.myconfig/bash/bash_fonctions.d/updaterepository.sh
-. ~/.myconfig/bash/bash_fonctions.d/todolist.sh
+. ~/.bash_fonctions.d/hosts.sh
+. ~/.bash_fonctions.d/handlesshagent.sh
+. ~/.bash_fonctions.d/updaterepository.sh
+. ~/.bash_fonctions.d/todolist.sh
 
