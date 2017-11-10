@@ -105,8 +105,8 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # Extends my bash with functions:
-if [ -f ~/.myconfig/bash/bash_fonctions.d/enabled.sh ]; then
-    . ~/.myconfig/bash/bash_fonctions.d/enabled.sh
+if [ -f ~/.bash_fonctions.d/enabled.sh ]; then
+    . ~/.bash_fonctions.d/enabled.sh
 fi
 
 
@@ -126,3 +126,4 @@ fi
 PYTHONSTARTUP=~/.pythonrc
 
 export PYTHONSTARTUP
+start_agent
