@@ -126,4 +126,3 @@ fi
 PYTHONSTARTUP=~/.pythonrc
 
 export PYTHONSTARTUP
-start_agent
