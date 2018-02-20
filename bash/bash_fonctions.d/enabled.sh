@@ -4,6 +4,7 @@
 #   Description: TODO   #
 #########################################################
 
+. ~/.bash_fonctions.d/bash_history.sh
 . ~/.bash_fonctions.d/hosts.sh
 . ~/.bash_fonctions.d/handlesshagent.sh
 . ~/.bash_fonctions.d/updaterepository.sh

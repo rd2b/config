@@ -4,20 +4,11 @@
 #   Description: Sauvegarder le bash_history            #
 #########################################################
 
-PROGNAME="$(basename $0)"
-quiet=false
-
-set -u
-set -e
-
-
-BACKUP_DIR="$HOME/.bash_history.archives/$HOSTNAME/"
-BACKUP="$BACKUP_DIR/bash_history-$(date +'%Y%m')"
+BACKUP_DIR="${HOME}/.bash_history.archives/${HOSTNAME}/"
+BACKUP="${BACKUP_DIR/}bash_history-$(date +'%Y%m')"
 
 function history_save {
-    echo $BACKUP_DIR
-    mkdir -p "$BACKUP_DIR"
-    history -a
+    mkdir -p "${BACKUP_DIR}"
     cp ~/.bash_history "${BACKUP}"
 }
 
