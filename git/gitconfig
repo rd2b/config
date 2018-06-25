@@ -2,7 +2,7 @@
 	default = simple
 [user]
 	name = Remi Debay
-	email = rdebay.ext@orange.com
+	email = debay.remi@gmail.com
 [core]
     editor = vim
     excludesfile = ~/.gitignore
