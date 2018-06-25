@@ -1,8 +1,5 @@
 [push]
 	default = simple
-[user]
-	name = Remi Debay
-	email = debay.remi@gmail.com
 [core]
     editor = vim
     excludesfile = ~/.gitignore
