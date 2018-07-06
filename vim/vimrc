@@ -16,10 +16,10 @@ else
     match OverLength /\%80v.*/
 endif
 
-set background=dark 
+set background=dark
 syntax on
-set lazyredraw 
-set scrolloff=10 " empeche de descendre en base du fichier 
+set lazyredraw
+set scrolloff=10 " empeche de descendre en base du fichier
 
 set encoding=utf-8
 
@@ -112,12 +112,17 @@ function! Crontricks()
 endfunction
 
 
-"Adding ~/.vimrc.local"
-function! LoadVimLocalRC()
-    if filereadable(expand("~/.vimrc.local"))
-        source ~/.vimrc.local
+""" Source A given file"""
+function! Loadfile(file_to_load)
+    if filereadable(a:file_to_load)
+        exec "source " . a:file_to_load
+    else
+        echo "Error: File is not readable" . a:file_to_load
     endif
 endfunction
+
+call Loadfile(expand('~/.vimrc.local'))
+call Loadfile(expand('~/.vim/conf.d/10*.vim'))
 
 autocmd FileType python :call Pythontricks()
 autocmd FileType php    :call Phptricks()
@@ -130,8 +135,6 @@ let pytemplate = ".vim/templates/skel.py"
 autocmd BufNewFile *.{sh,bash,ksh} call <SID>insert_description(shtemplate)
 autocmd BufNewFile *.py call <SID>insert_description(pytemplate)
 
-call LoadVimLocalRC()
 
 ""Supprimer le mappage en entrant dans vimrc
 autocmd VimEnter * if @% == '.vimrc' | mapclear!
-
