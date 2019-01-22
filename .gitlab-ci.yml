@@ -1,0 +1,9 @@
+image: "ubuntu:bionic"
+
+changelog:
+  script:
+  - test -n "$(git diff origin/master CHANGELOG.md)"
+  except:
+  - master
+  - tags
+  - schedules
