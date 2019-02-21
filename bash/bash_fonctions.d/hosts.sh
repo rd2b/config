@@ -9,4 +9,3 @@ function hosts {
         host $h
     done
 }
-

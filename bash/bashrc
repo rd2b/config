@@ -114,10 +114,10 @@ if [ -d ~/bin ]; then
     PATH="~/bin:$PATH"
 fi
 
-if [ -n "$DESKTOP_SESSION" ]; then 
+if [ -n "$DESKTOP_SESSION" ]; then
     # Désactive le capslock
     test -x /usr/bin/setxkbmap && /usr/bin/setxkbmap -option ctrl:nocaps
-    
+
     # Active le verrou numerique
     test -x /usr/bin/numlockx && /usr/bin/numlockx on
 fi

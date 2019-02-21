@@ -30,7 +30,7 @@ function _virsh_complete()
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
     cnxn=""
-    
+
     i=0
     while [[ $i -lt $COMP_CWORD ]]; do
         if [ ${COMP_WORDS[i]} = "-c" ]; then

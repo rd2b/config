@@ -1,6 +1,5 @@
-#!/bin/bash 
+#!/bin/bash
 
 [ -x /usr/bin/git ] && source ~/.bash_completion.d/git_completion
 [ -x /usr/bin/dsh ] && source ~/.bash_completion.d/dsh_completion
-[ -x /usr/bin/virsh ] && source ~/.bash_completion.d/virsh_completion  
-
+[ -x /usr/bin/virsh ] && source ~/.bash_completion.d/virsh_completion

@@ -26,7 +26,7 @@ $plugins/check_disk -w 20% -c 10% -p /var/log -e
 
 
 # sur *.wxz.fr
-sudo $plugins/check_host p01.wxz.fr 
+sudo $plugins/check_host p01.wxz.fr
 sudo $plugins/check_host p02.wxz.fr
 sudo $plugins/check_host home.wxz.fr
 sudo $plugins/check_host rss.wxz.fr
@@ -80,6 +80,3 @@ $CHECK_FROMP02 \
 -C "$plugins/check_disk -w 20% -c 10% -p /var/log -e" \
 -C "$plugins/check_load  -w 2,2,2 -c 4,4,4 -r" \
 | grep -v "^STATUS"
-
-
-
