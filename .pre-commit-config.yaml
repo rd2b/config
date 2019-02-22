@@ -9,3 +9,14 @@ repos:
     -   id: check-yaml
     -   id: check-added-large-files
     - id: no-commit-to-branch
+- repo: local
+  hooks:
+  - id: validate_pre-commit
+    name: Checks pre-commit against /etc/defaults/pre-commit-config.yaml
+    entry: /usr/bin/diff
+    args:
+    - /etc/defaults/pre-commit-config.yaml
+    - ./.pre-commit-config.yaml
+    files: ./.pre-commit-config.yaml
+    always_run: true
+    language: script
