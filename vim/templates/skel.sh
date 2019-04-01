@@ -7,6 +7,7 @@
 PROGNAME="$(basename $0)"
 quiet=false
 
+# TODO : Utiliser la syntaxe de boilerplate
 set -u
 set -e
 
