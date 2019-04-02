@@ -2,6 +2,8 @@ image: "ubuntu:bionic"
 
 changelog:
   script:
+  - apt-get update
+  - apt-get install -y git
   - test -n "$(git diff origin/master CHANGELOG.md)"
   except:
   - master
