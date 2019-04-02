@@ -1,5 +1,6 @@
 """"""""""""""""""""""""""""""""""""""""
-" Fichier de configuration pour vim
+" Config file for vim
+"
 """"""""""""""""""""""""""""""""""""""""
 
 ""Can use a different author file at home or work
@@ -7,148 +8,17 @@ if filereadable(expand("~/.vim/author_info.vim"))
     source ~/.vim/author_info.vim
 endif
 
-
-"Lignes trop longues
-if exists('+colorcolumn')
-    set colorcolumn=80
-else
-    highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-    match OverLength /\%80v.*/
-endif
-
-set background=dark
-syntax on
-set lazyredraw
-set scrolloff=10 " empeche de descendre en base du fichier
-
-set encoding=utf-8
-
-set cindent
-set smartindent
-set autoindent
-
-"" Pour les tabs
-set expandtab
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
-
-filetype plugin on
-filetype indent on
+" Big loop for all small vim files
+for vimconf in split(glob('~/.vim/conf.d/*.vim','\n'))
+    exe 'source' vimconf
+endfor
 
 if has("autocmd")
     au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
      \| exe "normal g'\"" | endif
 endif
 
-""Coloration syntaxique pour txt2tags
-au BufNewFile,BufRead *.t2t set ft=txt2tags
-""Coloration syntaxique pour cfengine3
-au BufRead,BufNewFile *.cf set ft=cf3
-""Coloration syntaxique pour markdown
-au BufRead,BufNewFile *.md set ft=markdown
-
-
-imap \fpath  <C-R>=expand("%:p")<CR>
-imap \fname  <C-R>=expand("%")<CR>
-
-"------------------------------------------------------------------------------
-"Maps pourbashfiles :
-"Headers :
-imap ;#headersep #########################################################<CR>
-imap ;headername <TAB>Name: <TAB>\fname<TAB><TAB>
-imap ;headerdescription <TAB>Description: TODO<TAB>
-imap ;#header  <LEFT>;#headersep#;headername#<CR>#;headerdescription#<CR>;#headersep
-imap ;header ;#header
-
-"Fonctions :
-imap ;#commentairefonctionsep  #-------------------------------------
-imap ;#commentairefonction <LEFT>;#commentairefonctionsep<CR># Description : TODO <CR>;#commentairefonctionsep
-imap ;indent <space><space><space><space>
-
-" Variables subversion
-imap ;subversion # Versionned file:<CR># $HeadURL$<CR># $Id$<CR>
-
-
-function! s:insert_description(templatefile)
-    let template = $HOME . "/" . a:templatefile
-    let date = strftime("%Y/%m/%d") " Get the current year in format YYYY
-    let file_name = expand("%:t") " Get file name without path
-    let i = 0
-    for line in readfile(template)
-        let line = substitute(line, "<file_name>", file_name, "ge")
-        let line = substitute(line, "<date>", date, "ge")
-        call append(i, line)
-        let i += 1
-    endfor
-    execute "normal! Go\<Esc>k"
-endfunction
-
-function! Bashtricks()
-    imap ;myft YES YOU ARE IN SH
-    imap ;header #!/bin/bash<CR>;#header
-    imap ;func ;#commentairefonction<CR>function TODO {<CR><CR>}
-
-endfunction
-
-function! Phptricks()
-    imap ;myft YES YOU ARE IN PHP
-    imap ;#headersep /************************************************/<CR>
-    imap ;#header  <?<CR><LEFT>;#headersep/*;headername*/<CR>/*;headerdescription*/<CR>;#headersep
-    imap ;#commentairefonction <LEFT>/**<CR><LEFT>* Description : TODO <CR>*/
-    imap ;func ;#commentairefonction<CR>function TODO(){<CR><CR>}
-endfunction
-
-function! Pythontricks()
-    imap ;myft YES YOU ARE IN PYTHON
-    imap ;main if __name__ == '__main__':<CR><space><space><space><space>
-    imap ;func def TODO():<CR>"""DESCRIPTION"""<CR>
-    imap ;header #!/usr/bin/env python<CR>;#header
-endfunction
-
-function! Crontricks()
-    imap ;header ;#header
-    imap ;myft YES YOU ARE IN CRONTAB
-endfunction
-
-
-""" Source A given file"""
-function! Loadfile(file_to_load)
-    if filereadable(a:file_to_load)
-        exec "source " . a:file_to_load
-    else
-        echo "Error: File is not readable" . a:file_to_load
-    endif
-endfunction
-
-call Loadfile(expand('~/.vimrc.local'))
-call Loadfile(expand('~/.vim/conf.d/10*.vim'))
-
-autocmd FileType python :call Pythontricks()
-autocmd FileType php    :call Phptricks()
-autocmd FileType sh     :call Bashtricks()
-autocmd FileType crontab :call Crontricks()
-
-let shtemplate = ".vim/templates/skel.sh"
-let pytemplate = ".vim/templates/skel.py"
-
-autocmd BufNewFile *.{sh,bash,ksh} call <SID>insert_description(shtemplate)
-autocmd BufNewFile *.py call <SID>insert_description(pytemplate)
-
 
 ""Supprimer le mappage en entrant dans vimrc
 autocmd VimEnter * if @% == '.vimrc' | mapclear!
 
-"" Plugin lint pour vim
-call plug#begin('~/.vim/plugged')
-Plug 'vim-syntastic/syntastic'
-call plug#end()
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0

@@ -154,8 +154,8 @@ syn match   t2tImg     '\[[[:alnum:]_,.+%$#@!?+~/-]\+\.\(png\|jpe\=g\|gif\|eps\|
 "syn match   t2tMacro    '%%[a-z]\+'
 syn match   t2tMacro    '%%\(date\|mtime\|infile\|outfile\)\>\(([^)]*)\)\='
 syn match   t2tMacro    '^ *%%toc\s*$'
-syn match   t2tIncluded '^%INCLUDED([a-z2]\+)'ms=s+1 contained
-syn match   t2tIncluded '^%--\{10,} Area Delimiter:'ms=s+1 contained
+syn match   t2tIncluded '^%INCLUDED([a-z2]\+)'ms=s+1 contained 
+syn match   t2tIncluded '^%--\{10,} Area Delimiter:'ms=s+1 contained 
 syn match   t2tCommand  "^%!\s*include\s*\((\(\|txt\|html\|xhtml\|sgml\|lout\|tex\|mgp\|man\|moin\|pm6\|wiki\|gwiki\|doku\))\)\=\s*:\s*\S"me=e-1 contains=t2tTargets
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -214,7 +214,7 @@ if &background == "light"
 else
     hi default t2tComment     ctermfg=brown    guifg=bisque
 endif
-hi default link t2tCommentArea t2tComment
+hi default link t2tCommentArea t2tComment 
 "
 " color definitions (using Vim defaults)
 hi default link t2tTitle         Error
