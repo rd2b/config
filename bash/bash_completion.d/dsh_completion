@@ -3,13 +3,13 @@ _dsh()
     local OLDIFS="$IFS" IFS=$'\t\n' cur=${COMP_WORDS[COMP_CWORD]} i
     local prev=${COMP_WORDS[COMP_CWORD-1]}
     local complist=()
- 
+
     COMPREPLY=()
- 
+
     # Use home's dsh config if exists, else use system's.
     [ -d /etc/dsh/group ] && dsh_groups=( /etc/dsh/group )
     [ -d ~/.dsh/group ] && dsh_groups=( ~/.dsh/group )
- 
+
    case $prev in
         -m)
             _known_hosts
@@ -17,7 +17,7 @@ _dsh()
             ;;
         -g)
             complist=( $( compgen -f ${dsh_groups}/$cur ) )
- 
+
             while [[ ${#complist[@]} -eq 1 ]]
             do
                 i=${complist[0]}
@@ -31,7 +31,7 @@ _dsh()
                     break;
                 fi
             done
- 
+
             for i in ${complist[@]}; do
                 COMPREPLY=( ${COMPREPLY[@]} ${i#${dsh_groups}/} )
             done
@@ -42,10 +42,10 @@ _dsh()
             return 0
             ;;
     esac
- 
- 
+
+
     IFS="$OLDIFS"
- 
+
     if [[ "$cur" == -* ]]; then
         COMPREPLY=( $( compgen -W '--verbose -v --quiet -q \
             --machine -m --all -a --group -g --file -f  \
@@ -55,9 +55,8 @@ _dsh()
             --duplicate-input -i --bufsize -b --version -V \
             --num-topology -N --forklimit -F' -- $cur ) )
     fi
- 
+
     return 0
- 
+
 }
 complete -F _dsh -o filenames dsh
-

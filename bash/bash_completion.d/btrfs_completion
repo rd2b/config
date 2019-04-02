@@ -1,7 +1,7 @@
 #!/bin/bash
 _btrfs()
 {
-	local OLDIFS="$IFS" IFS=$'\t\n' cur=${COMP_WORDS[COMP_CWORD]} 
+	local OLDIFS="$IFS" IFS=$'\t\n' cur=${COMP_WORDS[COMP_CWORD]}
 	local prev=${COMP_WORDS[COMP_CWORD-1]}
 	local complist=()
 
@@ -40,4 +40,3 @@ _btrfs()
 
 }
 complete -F _btrfs -o filenames btrfs
-

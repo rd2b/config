@@ -1236,4 +1236,3 @@ complete -o default -o nospace -F _git_submodule git-submodule
 complete -o default -o nospace -F _git_log git-show-branch
 complete -o default -o nospace -F _git_tag git-tag
 complete -o default -o nospace -F _git_log git-whatchanged
-
