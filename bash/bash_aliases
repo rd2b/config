@@ -1,3 +1,10 @@
+#!/usr/bin/bash
+
+# dircolors sets the LS_COLORS env var
+eval "$(dircolors -b)"
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+
 if [ -f ~/.bash_aliases.local ]; then
     . ~/.bash_aliases.local
 fi
