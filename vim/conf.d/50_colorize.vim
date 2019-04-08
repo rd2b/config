@@ -3,7 +3,7 @@
 """ author=<author>
 """ date=2019/04/02
 " Use with:
-"  source 50_colorize.vim 
+"  source 50_colorize.vim
 
 
 
@@ -13,4 +13,3 @@ au BufNewFile,BufRead *.t2t set ft=txt2tags
 au BufRead,BufNewFile *.cf set ft=cf3
 ""Coloration syntaxique pour markdown
 au BufRead,BufNewFile *.md set ft=markdown
-

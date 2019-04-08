@@ -28,4 +28,3 @@ let vimtemplate = ".vim/templates/skel.vim"
 autocmd BufNewFile *.{sh,bash,ksh} call <SID>use_skel(shtemplate)
 autocmd BufNewFile *.py call <SID>use_skel(pytemplate)
 autocmd BufNewFile *.vim call <SID>use_skel(vimtemplate)
-

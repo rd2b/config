@@ -58,4 +58,3 @@ autocmd FileType crontab :call Crontricks()
 
 ""Supprimer le mappage en entrant dans vimrc
 autocmd VimEnter * if @% == '.vimrc' | mapclear!
-

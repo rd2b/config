@@ -3,6 +3,4 @@
 """ author=<author>
 """ date=<date>
 " Use with:
-"  source <file_name> 
-
-
+"  source <file_name>

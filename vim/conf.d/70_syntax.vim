@@ -4,7 +4,7 @@
 """ date=2019/04/02
 
 " Use with:
-"  source 70_syntax.vim 
+"  source 70_syntax.vim
 
 "" Plugin lint pour vim
 call plug#begin('~/.vim/plugged')
