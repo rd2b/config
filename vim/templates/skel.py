@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
 """ <file_name> : Description """
-
 # TODO: complete:
 __author__ = "<author>"
 __date__ = "<date>"

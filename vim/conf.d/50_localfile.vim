@@ -6,4 +6,3 @@ function! LoadVimLocalRC()
 endfunction
 
 call LoadVimLocalRC()
-
