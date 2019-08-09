@@ -5,6 +5,10 @@
 
 " Use with:
 "  source 70_syntax.vim
+" See: https://github.com/junegunn/vim-plug
+" curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+"    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" Install with ':PlugInstall' in vim
 
 "" Plugin lint pour vim
 call plug#begin('~/.vim/plugged')
